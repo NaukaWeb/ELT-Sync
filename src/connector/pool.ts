@@ -1,32 +1,40 @@
+if (process.env.NODE_ENV !== `development`) {
+  require(`dotenv`).config();
+}
+
 const mariadb = require('mariadb');
+
 const pool = mariadb.createPool({
-  host: 'mydb.com',
-  user: 'myUser',
-  password: 'myPassword',
+  host: process.env.DESTINY_DB_HOST,
+  user: process.env.DESTINY_DB_USER_WRITE,
+  password: process.env.DESTINY_DB_PASSWORD_WRITE,
   connectionLimit: 5
 });
-pool
-  .getConnection()
-  .then((conn: any) => {
-    conn
-      .query('SELECT 1 as val')
-      .then((rows: any) => {
-        console.log(rows); //[ {val: 1}, meta: ... ]
-        //Table must have been created before
-        // " CREATE TABLE myTable (id int, val varchar(255)) "
-        return conn.query('INSERT INTO myTable value (?, ?)', [1, 'mariadb']);
-      })
-      .then((res: any) => {
-        console.log(res); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
-        conn.end();
-      })
-      .catch((err: any) => {
-        //handle error
-        console.log(err);
-        conn.end();
-      });
-  })
-  .catch((err: any) => {
-    //not connected
-    console.log(err);
-  });
+console.log('mariadb', mariadb);
+
+export async function asyncFunction() {
+  let conn;
+  try {
+    conn = await pool.getConnection();
+    const rows: any = await conn.query(
+      'SELECT * from asterisk.queuelog limit 10'
+    );
+    // rows: [ {val: 1}, meta: ... ]
+    console.log('rows', rows);
+
+    // const res: any = await conn.query('INSERT INTO myTable value (?, ?)', [
+    //   1,
+    //   'mariadb'
+    // ]);
+    // console.log('res', res);
+
+    // res: { affectedRows: 1, insertId: 1, warningStatus: 0 }
+    // eslint-disable-next-line no-useless-catch
+  } catch (err) {
+    throw err;
+  } finally {
+    if (conn) conn.release(); //release to pool
+  }
+}
+
+asyncFunction();
