@@ -1,0 +1,32 @@
+{
+  "name": "elt-sync",
+  "version": "1.0.0",
+  "description": "System to extract, load and transform data",
+  "main": "index.js",
+  "scripts": {
+    "transpile": "tsc",
+    "build": "npm run lint && npm run transpile",
+    "test": "test",
+    "lint": "eslint --fix --ext .ts ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaukaWeb/ELT-Sync.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NaukaWeb/ELT-Sync/issues"
+  },
+  "homepage": "https://github.com/NaukaWeb/ELT-Sync#readme",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.23.0",
+    "@typescript-eslint/parser": "^2.23.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "typescript": "^3.8.3"
+  }
+}
