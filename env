@@ -1,0 +1,26 @@
+# CONECTION
+NODE_ENV='development'
+
+# PORT
+DEFAULT_PORT=3150
+# ------------------------------------------------------------------------
+
+# ORIGIN DATABASE
+CONNECTION_LIMIT=10
+ORIGIN_DB_HOST=localhost
+# ***** ORIGIN
+ORIGIN_DB_USER_READ=readmaprotel
+ORIGIN_DB_PASSWORD_READ=M4pr0t3l
+# ORIGIN DATABASE NAMES
+ORIGIN_DB_NAME=asterisk
+# ------------------------------------------------------------------------
+
+# DESTINY DATABASE
+CONNECTION_LIMIT=10
+DESTINY_DB_HOST=localhost
+# ***** DESTINY
+DESTINY_DB_USER_WRITE=root
+DESTINY_DB_PASSWORD_WRITE=M4pr0t3l
+# DESTINY DATABASE NAMES
+DESTINY_DB_NAME=NaukaWeb-Sync
+# ------------------------------------------------------------------------
